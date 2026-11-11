@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento de IA com Google Colab - 1º Ano</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0d0b14;
+            color: #e0d8f0;
+            line-height: 1.6;
+        }
+
+        /* CABEÇALHO */
+        header {
+            background: linear-gradient(135deg, #140924, #2d124d, #521c80);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid #331954;
+        }
+
+        header h1 {
+            font-size: 45px;
+            margin-bottom: 10px;
+            color: #f0e6ff;
+        }
+
+        header p {
+            font-size: 20px;
+            margin: 5px;
+            color: #d1baf5;
+        }
+
+        /* MENU */
+        nav {
+            background-color: #07050a;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #26133b;
+        }
+
+        nav a {
+            color: #e0d8f0;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #bb86fc;
+        }
+
+        /* SEÇÕES */
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        section h2 {
+            text-align: center;
+            color: #bb86fc;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        /* INÍCIO */
+        .inicio {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .inicio img {
+            width: 45%;
+            border-radius: 15px;
+            border: 1px solid #331954;
+        }
+
+        .inicio-texto {
+            width: 55%;
+        }
+
+        .inicio-texto h2 {
+            text-align: left;
+        }
+
+        .inicio-texto p,
+        .reflexao p,
+        .projeto p {
+            margin-bottom: 15px;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #161024;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid #2a1b42;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #bb86fc;
+            box-shadow: 0 6px 20px rgba(187, 134, 252, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #d09eff;
+            margin-bottom: 10px;
+        }
+
+        /* ATIVIDADES */
+        .atividade {
+            background-color: #161024;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 6px solid #bb86fc;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+            border-top: 1px solid #2a1b42;
+            border-right: 1px solid #2a1b42;
+            border-bottom: 1px solid #2a1b42;
+        }
+
+        .atividade h3 {
+            color: #d09eff;
+            margin-bottom: 10px;
+        }
+
+        /* PROJETO */
+        .projeto {
+            background: linear-gradient(135deg, #140924, #2b1147, #481a70);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #3d1b63;
+        }
+
+        .projeto h2 {
+            color: #f0e6ff;
+        }
+
+        .botao {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #bb86fc;
+            color: #0d0b14;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .botao:hover {
+            background-color: #9955e8;
+        }
+
+        /* REFLEXÃO */
+        .reflexao {
+            background-color: #1a122b;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #331f54;
+        }
+
+        .reflexao p {
+            font-size: 19px;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background-color: #07050a;
+            color: #a89bc2;
+            text-align: center;
+            padding: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #26133b;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 32px;
+            }
+
+            nav a {
+                display: block;
+                margin: 8px;
+            }
+
+            .inicio {
+                flex-direction: column;
+            }
+
+            .inicio img,
+            .inicio-texto {
+                width: 100%;
+            }
+
+            .inicio-texto h2 {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <h1>🤖 Treinamento de Inteligência Artificial</h1>
+        <p>1º Ano do Ensino Médio</p>
+        <p>Desenvolvimento de modelos de IA utilizando o Google Colab</p>
+    </header>
+
+    <!-- MENU -->
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#etapas">Etapas do Treinamento</a>
+        <a href="#colab">Google Colab</a>
+        <a href="#atividades">Atividades</a>
+        <a href="#projeto">Projeto Prático</a>
+    </nav>
+
+    <!-- INÍCIO -->
+    <section id="inicio">
+        <div class="inicio">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995" alt="Gráfico de rede neural e inteligência artificial">
+            <div class="inicio-texto">
+                <h2>💡 Como as IAs Aprendem?</h2>
+                <p>
+                    O desenvolvimento de Inteligência Artificial envolve ensinar um computador a reconhecer padrões através de <strong>dados</strong> e <strong>algoritmos</strong>.
+                </p>
+                <p>
+                    Em vez de programar regras fixas, alimentamos o modelo com milhares de exemplos durante a fase de <strong>treinamento</strong> para que ele aprenda a tomar decisões ou fazer previsões sozinho.
+                </p>
+                <p>
+                    <strong>Dados + Algoritmo + Processamento = Modelo Treinado 🚀</strong>
+                </p>
+                <p>
+                    Com plataformas acessíveis na nuvem como o <strong>Google Colab</strong>, qualquer estudante pode criar e treinar seus próprios modelos utilizando linguagem Python e aceleração de hardware.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ETAPAS DO TREINAMENTO -->
+    <section id="etapas">
+        <h2>🛠️ Ciclo de Desenvolvimento de IA</h2>
+        <div class="cards">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71" alt="Análise de dados e tabelas no computador">
+                <h3>1. Coleta de Dados</h3>
+                <p>Organize um conjunto de dados (dataset) limpo com imagens, textos ou números para o treino.</p>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5" alt="Código de programação Python em uma tela de computador">
+                <h3>2. Escolha do Algoritmo</h3>
+                <p>Selecione a arquitetura adequada (Redes Neurais, Árvores de Decisão, Regressão).</p>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31" alt="Servidores de processamento de alto desempenho">
+                <h3>3. Treinamento</h3>
+                <p>Ajuste os pesos do modelo iterativamente (épocas) para minimizar a margem de erro.</p>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f" alt="Gráficos de avaliação de desempenho de um modelo">
+                <h3>4. Avaliação e Validação</h3>
+                <p>Teste a precisão do modelo com dados novos que ele nunca viu durante o treinamento.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GOOGLE COLAB -->
+    <section id="colab">
+        <h2>⚡ Por que usar o Google Colab?</h2>
+        <div class="cards">
+
+            <div class="card">
+                <h3>☁️ Ambiente em Nuvem</h3>
+                <p>Roda blocos de código Python (Jupyter Notebooks) diretamente no navegador, sem precisar instalar nada localmente.</p>
+            </div>
+
+            <div class="card">
+                <h3>🚀 GPUs e TPUs Gratuitas</h3>
+                <p>Fornece acesso gratuito a processadores gráficos acelerados, essenciais para acelerar o treino de redes neurais.</p>
+            </div>
+
+            <div class="card">
+                <h3>📦 Bibliotecas Pré-instaladas</h3>
+                <p>Já vem com bibliotecas essenciais configuradas, como TensorFlow, PyTorch, Pandas e Scikit-Learn.</p>
+            </div>
+
+            <div class="card">
+                <h3>🤝 Integração com Google Drive</h3>
+                <p>Salva relatórios, datasets e arquivos diretamente na nuvem e facilita o trabalho em equipe.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ÉTICA E REFLEXÃO -->
+    <section>
+        <div class="reflexao">
+            <h2>🌐 Qualidade dos Dados e Ética em IA</h2>
+            <p>
+                O desempenho de um modelo depende diretamente da qualidade dos dados utilizados durante o treinamento.
+            </p>
+            <p>
+                Se os dados contiverem preconceitos ou informações incompletas, a IA aprenderá e replicará esses erros (conhecidos como <strong>viés algorítmico</strong>).
+            </p>
+            <p>
+                Por isso, desenvolver IA requer responsabilidade social, diversidade no conjunto de dados e constante validação humana.
+            </p>
+        </div>
+    </section>
+
+    <!-- ATIVIDADES -->
+    <section id="atividades">
+        <h2>📝 Desafios Práticos de IA e Colab</h2>
+
+        <div class="atividade">
+            <h3>💻 Atividade 1 – Primeiro Notebook no Google Colab</h3>
+            <p>Acesse o Google Colab, crie um novo notebook Python e execute um código simples de cálculo e impressão de mensagem.</p>
+        </div>
+
+        <div class="atividade">
+            <h3>📊 Atividade 2 – Entendendo o Dataset</h3>
+            <p>Escolha um tema (ex.: classificação de animais ou previsão de notas) e descreva quais colunas/atributos seriam necessários no dataset.</p>
+        </div>
+
+        <div class="atividade">
+            <h3>⚡ Atividade 3 – Ativando a GPU</h3>
+            <p>No Colab, vá em <em>Ambiente de Execução > Alterar tipo de ambiente de execução</em> e selecione a aceleração por GPU. Explique a vantagem dessa escolha.</p>
+        </div>
+
+        <div class="atividade">
+            <h3>📈 Atividade 4 – Épocas e Perda (Loss)</h3>
+            <p>Explique o que acontece com a taxa de erro (loss) conforme o número de épocas de treinamento aumenta.</p>
+        </div>
+
+        <div class="atividade">
+            <h3>🎯 Atividade 5 – Overfitting (Sobreajuste)</h3>
+            <p>Pesquise o conceito de <em>overfitting</em> e cite uma estratégia para evitar que o modelo apenas "decore" os dados de treino.</p>
+        </div>
+
+        <div class="atividade">
+            <h3>⚖️ Atividade 6 – Identificando Viés nos Dados</h3>
+            <p>Dê um exemplo real de como um conjunto de dados desbalanceado pode gerar um resultado injusto em uma aplicação de IA.</p>
+        </div>
+    </section>
+
+    <!-- PROJETO FINAL -->
+    <section id="projeto">
+        <div class="projeto">
+            <h2>🛡️ Projeto Prático – Treinando Seu Primeiro Modelo no Colab</h2>
+            <p>Em duplas ou trios, vocês irão construir e treinar um modelo simples no Google Colab utilizando a biblioteca Scikit-Learn ou Teachable Machine.</p>
+            <p>O projeto deverá apresentar:</p>
+            <p>
+                ✅ Definição do problema a ser resolvido pela IA<br>
+                ✅ Origem e descrição do dataset utilizado<br>
+                ✅ Código no Google Colab com etapas documentadas<br>
+                ✅ Acurácia alcançada pelo modelo<br>
+                ✅ Demonstração prática do teste com novos dados<br>
+                ✅ Apresentação dos resultados para a turma
+            </p>
+            <a href="#inicio" class="botao">Voltar ao início</a>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p>🤖 Desenvolvimento e Treinamento de IA – 1º Ano do Ensino Médio</p>
+        <p>Coletar. Treinar. Validar. Aplicar com ética e inovação.</p>
+        <p>© 2026 - Projeto Educacional</p>
+    </footer>
+
+</body>
+</html>
